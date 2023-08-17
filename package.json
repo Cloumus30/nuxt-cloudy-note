@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --dotenv .env",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -16,6 +16,7 @@
     "nuxt-icon": "^0.4.2"
   },
   "dependencies": {
-    "flowbite": "^1.8.1"
+    "flowbite": "^1.8.1",
+    "vue3-toastify": "^0.1.12"
   }
 }
