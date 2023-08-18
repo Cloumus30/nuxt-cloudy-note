@@ -4,6 +4,14 @@ definePageMeta({
     layout: 'auth'
 })
 
+useHead({
+    title: 'Register',
+    meta:[
+        {name: 'description', content: 'Short Qr Register Page'},
+        {name: 'author', content: 'Cloudias Imani Pradana'}
+    ]
+})
+
 const passEye = ref('ph:eye-closed-fill')
 const passConf = ref('ph:eye-closed-fill')
 const passType = ref('password')

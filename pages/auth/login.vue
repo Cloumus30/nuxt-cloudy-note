@@ -1,7 +1,16 @@
 <script setup>
+import { ref } from 'vue';
 
 definePageMeta({
-    layout: 'auth'
+    layout: 'auth',
+})
+const { data } = await useFetch()
+useHead({
+    title: 'Login',
+    meta:[
+        {name: 'description', content: 'Short Qr Login Page'},
+        {name: 'author', content: 'Cloudias Imani Pradana'}
+    ]
 })
 
 const passEye = ref('ph:eye-closed-fill')
