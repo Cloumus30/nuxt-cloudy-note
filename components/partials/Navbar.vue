@@ -22,6 +22,12 @@
                         {{m.name}}
                     </NuxtLink>
                 </li>
+
+                <li>
+                    <a @click="logout" class="block py-2 pl-3 pr-4 text-white bg-blue-700 hover:bg-gray-100 hover:text-blue-700 rounded hover:cursor-pointer">
+                        Logout
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

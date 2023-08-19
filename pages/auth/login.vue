@@ -26,6 +26,8 @@ const passType = ref('password')
 const email = ref("");
 const password = ref("");
 
+const isLoadSubmit = ref(false);
+
 
 // Toggle Visible Pass
 function togglePass() {
@@ -41,11 +43,13 @@ function togglePass() {
 
 const {$api} = useNuxtApp();
 
+// Submit Login
 async function submitLogin(){
     const body = {
         email: email.value,
         password: password.value,
     }
+    isLoadSubmit.value = true;
     const {data, error} = await $api.auth.login(body);
     if(error.value){
         notifParse('error', error.value.data.message, error.value.statusCode);
@@ -56,6 +60,7 @@ async function submitLogin(){
         await navigateTo('/')
         notifParse('success', "Success Login", 200)
     }
+    isLoadSubmit.value = false;
 }
 
 </script>
@@ -90,9 +95,7 @@ async function submitLogin(){
             </div>
             
             <div class="mb-6 w-full flex justify-center">
-                <button type="submit" @click="submitLogin" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-10 py-3 mr-2 mb-2 focus:outline-none">
-                    Login
-                </button>
+                <PartialsButtonSubmit :isLoadSubmit="isLoadSubmit" @submit="submitLogin"></PartialsButtonSubmit>
             </div>
 
             <div class="mb-6 text-center text-xs">
