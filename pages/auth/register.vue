@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 definePageMeta({
-    layout: 'auth'
+    layout: 'auth',
+    middleware: ['auth']
 })
 
 useHead({
@@ -47,7 +48,7 @@ function toggleConfPass(){
 
         <form action="" class="mt-10 w-full">
             <div class="relative z-0 w-full mb-6 group">
-                <input type="text" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                <input type="text" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-white appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                 <label for="email" class="peer-focus:font-medium absolute text-sm duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     Alamat Email
                 </label>
@@ -55,26 +56,26 @@ function toggleConfPass(){
 
             <div class="flex">
                 <div class="relative z-0 w-full mb-6 group">
-                    <input :type="passType" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <input :type="passType" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-white appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label for="password" class="peer-focus:font-medium absolute text-sm duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Password
                     </label>
                 </div>
                 <label :onclick="togglePass" for="id" class="hover:cursor-pointer flex mb-0.5">
-                    <Icon :name="passEye" size="20" class="self-center pb-0.5 border-b-2 border-black"/>
+                    <Icon :name="passEye" size="20" class="self-center pb-0.5 border-b-2 border-white"/>
                     <!-- <Icon name="ph:eye-closed-fill"/> -->
                 </label>
             </div>
             
             <div class="flex">
                 <div class="relative z-0 w-full mb-6 group">
-                    <input :type="passConfType" name="password_confirm" id="password_confirm" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <input :type="passConfType" name="password_confirm" id="password_confirm" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-white appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label for="password_confirm" class="peer-focus:font-medium absolute text-sm duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Konfirmasi Password
                     </label>
                 </div>
                 <label :onclick="toggleConfPass" for="id" class="hover:cursor-pointer flex mb-0.5">
-                    <Icon :name="passConf" size="20" class="self-center pb-0.5 border-b-2 border-black"/>
+                    <Icon :name="passConf" size="20" class="self-center pb-0.5 border-b-2 border-white"/>
                     <!-- <Icon name="ph:eye-closed-fill"/> -->
                 </label>
             </div>

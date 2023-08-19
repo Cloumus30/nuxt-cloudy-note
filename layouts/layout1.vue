@@ -14,10 +14,18 @@
                 'url' : '/auth/register'
             }
         ];
+
+    
+
+    onMounted(()=>{
+        const loading = useLoad();
+        loading.value = false;
+    })
 </script>
 
 <template>
     <div>
+        <PartialsSpinnerPage></PartialsSpinnerPage>
         <PartialsNavbar :data="menu" />
         <slot />
     </div>

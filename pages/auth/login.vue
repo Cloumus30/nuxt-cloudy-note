@@ -1,10 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 
 definePageMeta({
-    layout: 'auth',
+    layout: false,
 })
-const { data } = await useFetch()
+
 useHead({
     title: 'Login',
     meta:[
@@ -13,8 +13,18 @@ useHead({
     ]
 })
 
+// Check If Logged In
+const sub = useCookie('sub');
+if(sub.value){
+    // console.log('Login Authenticated')
+    await navigateTo('/')
+}
+
 const passEye = ref('ph:eye-closed-fill')
 const passType = ref('password')
+
+const email = ref("");
+const password = ref("");
 
 
 // Toggle Visible Pass
@@ -29,15 +39,34 @@ function togglePass() {
     
 }
 
+const {$api} = useNuxtApp();
+
+async function submitLogin(){
+    const body = {
+        email: email.value,
+        password: password.value,
+    }
+    const {data, error} = await $api.auth.login(body);
+    if(error.value){
+        notifParse('error', error.value.data.message, error.value.statusCode);
+    }
+    if(data.value){
+        const sub = useCookie('sub', {maxAge:60*60*24, sameSite:true});
+        sub.value = data.value.data.access_key;
+        await navigateTo('/')
+        notifParse('success', "Success Login", 200)
+    }
+}
+
 </script>
 
 <template>
-    <div>
+    <NuxtLayout name="auth">
         <h1 class="text-center">Halaman Login</h1>
 
-        <form action="" class="mt-10 w-full">
+        <form action="" class="mt-10 w-full" @click.prevent="">
             <div class="relative z-0 w-full mb-6 group">
-                <input type="text" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                <input type="text" name="email" id="email" v-model="email" class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-white appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                 <label for="email" class="peer-focus:font-medium absolute text-sm duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     Alamat Email
                 </label>
@@ -45,13 +74,13 @@ function togglePass() {
 
             <div class="flex">
                 <div class="relative z-0 w-full mb-6 group">
-                    <input :type="passType" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <input :type="passType" name="password" id="password" v-model="password" class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-white appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label for="password" class="peer-focus:font-medium absolute text-sm duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Password
                     </label>
                 </div>
-                <label :onclick="togglePass" for="id" class="hover:cursor-pointer flex mb-0.5">
-                    <Icon :name="passEye" size="20" class="self-center pb-0.5 border-b-2 border-black"/>
+                <label @click="togglePass" for="id" class="hover:cursor-pointer flex mb-0.5">
+                    <Icon :name="passEye" size="20" class="self-center pb-0.5 border-b-2 border-white"/>
                     <!-- <Icon name="ph:eye-closed-fill"/> -->
                 </label>
             </div>
@@ -61,7 +90,7 @@ function togglePass() {
             </div>
             
             <div class="mb-6 w-full flex justify-center">
-                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-10 py-3 mr-2 mb-2 focus:outline-none">
+                <button type="submit" @click="submitLogin" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-10 py-3 mr-2 mb-2 focus:outline-none">
                     Login
                 </button>
             </div>
@@ -74,5 +103,6 @@ function togglePass() {
                 </p>
             </div>
         </form>
-    </div>
+    </NuxtLayout>
+    
 </template>

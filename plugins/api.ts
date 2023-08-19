@@ -1,8 +1,10 @@
 import { FetchOptions, $fetch } from "ofetch"
+import AuthModule from "~/repository/module/authModule/auth";
 import UserModule from "~/repository/module/userModule/user";
 
 interface ApiInstance{
     user: UserModule,
+    auth: AuthModule,
 }
 
 export default defineNuxtPlugin((nuxtApp)=>{
@@ -16,6 +18,7 @@ export default defineNuxtPlugin((nuxtApp)=>{
 
     const modules: ApiInstance ={
         user: new UserModule(apiFetcher),
+        auth: new AuthModule(apiFetcher),
     }
 
     return {
