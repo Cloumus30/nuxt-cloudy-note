@@ -16,8 +16,17 @@
     "nuxt-icon": "^0.4.2"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^39.0.1",
+    "@ckeditor/ckeditor5-vue": "^5.1.0",
+    "@dashibase/lotion": "^0.1.4",
+    "@editorjs/editorjs": "^2.27.2",
+    "@toast-ui/editor": "^3.2.2",
+    "@vueup/vue-quill": "^1.2.0",
     "flowbite": "^1.8.1",
     "next-auth": "^4.21.1",
+    "oh-vue-icons": "^1.0.0-rc3",
+    "quill": "^1.3.6",
+    "uuid": "^9.0.0",
     "vue3-toastify": "^0.1.12"
   }
 }

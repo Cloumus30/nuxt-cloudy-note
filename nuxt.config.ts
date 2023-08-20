@@ -11,6 +11,11 @@ export default defineNuxtConfig({
     configPath: 'tailwind.config',
     viewer: true,
   },
+  vue:{
+    compilerOptions: {
+      isCustomElement: (tag) => ['OtherComponents', 'Ckeditor'].includes(tag),
+    },
+  },
   modules:[
     '@nuxtjs/tailwindcss',
     'nuxt-icon',

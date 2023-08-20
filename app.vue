@@ -14,11 +14,31 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import { initFlowbite } from 'flowbite'
+import { initAccordions, 
+    initCarousels, 
+    initCollapses, 
+    initDials, 
+    initDismisses, 
+    initDrawers, 
+    initDropdowns, 
+    initModals, 
+    initPopovers, 
+    initTabs, 
+    initTooltips } from 'flowbite'
 import { PartialsToast } from '#components'
 // initialize components based on data attribute selectors
 onMounted(() => {
-    initFlowbite();
+  initAccordions();
+    initCarousels();
+    initCollapses();
+    initDials();
+    initDismisses();
+    initDrawers();
+    initDropdowns();
+    initModals();
+    initPopovers();
+    initTabs();
+    initTooltips();
 })
 
 </script>
