@@ -9,6 +9,13 @@
 
             <h1>TUI EDITOR</h1>
             <PartialsTuiEditor></PartialsTuiEditor>
+
+            <br>
+            <br>
+
+            <h1>CK Editor</h1>
+            <PartialsCKEdit></PartialsCKEdit>
+
          </ClientOnly>
         
          

@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   },
   vue:{
     compilerOptions: {
-      isCustomElement: (tag) => ['OtherComponents', 'Ckeditor'].includes(tag),
+      isCustomElement: (tag) => ['OtherComponents', 'CKEditor'].includes(tag),
     },
   },
   modules:[
